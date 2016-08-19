@@ -2768,6 +2768,7 @@
     };
 
     BootstrapTable.prototype.clearSort = function () { //Lone Mountain
+        this.initSort();
         this.options.sortOrder = null;
         this.options.sortName = null;
     };
