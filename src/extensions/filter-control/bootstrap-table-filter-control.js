@@ -320,12 +320,14 @@
 
         if (addedFilterControl) {
             header.off('keyup', 'input').on('keyup', 'input', function (event) {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(function () {
-                    that.onColumnSearch(event);
-                }, that.options.searchTimeOut);
+                if(that.options.filterLive || event.keyCode == 13){
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(function () {
+                        that.onColumnSearch(event);
+                    }, that.options.searchTimeOut);
+                }
             });
-
+            
             header.off('change', 'select').on('change', 'select', function (event) {
                 clearTimeout(timeoutId);
                 timeoutId = setTimeout(function () {
@@ -443,6 +445,7 @@
                 return sprintf('<input type="text" class="form-control date-filter-control bootstrap-table-filter-control-%s" style="width: 100%; visibility: %s">', field, isVisible);
             }
         },
+        filterLive:true,
         //internal variables
         valuesFilterControl: []
     });
@@ -618,19 +621,26 @@
             }
         }
     };
-
     BootstrapTable.prototype.onColumnSearch = function (event) {
         if ($.inArray(event.keyCode, [37, 38, 39, 40]) > -1) {
             return;
         }
 
         copyValues(this);
-        var text = $.trim($(event.currentTarget).val());
-        var $field = $(event.currentTarget).closest('[data-field]').data('field');
-
         if ($.isEmptyObject(this.filterColumnsPartial)) {
             this.filterColumnsPartial = {};
         }
+        if(!this.options.filterLive){  //Lone Mountain
+            for (var i = this.options.valuesFilterControl.length - 1; i >= 0; i--) {
+                var $filter = this.options.valuesFilterControl[i];
+                this.filterColumnsPartial[$filter['field']] = $filter['value'];
+            }
+        }
+        var text = $.trim($(event.currentTarget).val());
+        var $field = $(event.currentTarget).closest('[data-field]').data('field');
+
+
+
         if (text) {
             this.filterColumnsPartial[$field] = text;
         } else {
@@ -703,5 +713,5 @@
                 }
             }, that.options.searchTimeOut);
         }
-    }; 
+    };
 })(jQuery);
