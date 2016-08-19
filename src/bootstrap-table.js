@@ -1088,7 +1088,21 @@
                 sprintf('<i class="%s %s"></i>', this.options.iconsPrefix, this.options.icons.toggle),
                 '</button>');
         }
+        if (this.options.showClear) {
+            var $btnGroup = this.$toolbar.find('>.btn-group'),
+                $btnClear = $btnGroup.find('.show-clear');  //Lone Mountain
 
+            if (!$btnClear.length) {
+                $btnClear = $([
+                    '<button class="btn btn-default show-clear" ',
+                    sprintf('type="button" title="%s">', 'Clear Table Options'),
+                    sprintf('<i class="%s %s"></i> ', this.options.iconsPrefix, this.options.icons.clear),
+                    '</button>'
+                ].join('')).appendTo($btnGroup);
+
+                $btnClear.off('click').on('click', $.proxy(this.clearSort, this));
+            }
+        }
         if (this.options.showColumns) {
             html.push(sprintf('<div class="keep-open btn-group" title="%s">',
                     this.options.formatColumns()),
@@ -2751,6 +2765,11 @@
         this.initServer(params && params.silent,
             params && params.query, params && params.url);
         this.trigger('refresh', params);
+    };
+
+    BootstrapTable.prototype.clearSort = function () { //Lone Mountain
+        this.options.sortOrder = null;
+        this.options.sortName = null;
     };
 
     BootstrapTable.prototype.resetWidth = function () {
