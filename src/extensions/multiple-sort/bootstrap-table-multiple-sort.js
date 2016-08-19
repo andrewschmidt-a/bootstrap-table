@@ -225,7 +225,12 @@
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
         _initToolbar = BootstrapTable.prototype.initToolbar;
-
+    BootstrapTable.prototype.setMultiSort = function (sort) {  //Lone Mountain
+        this.options.sortPriority = sort;
+        this.$sortModal.find('tbody > tr').remove();  //clears the sort modal
+        showSortModal(this);  //loads into the sort modal
+    };
+    $.fn.bootstrapTable.methods.push('setMultiSort');  //Lone Mountain
     BootstrapTable.prototype.initToolbar = function() {
         this.showToolbar = true;
         var that = this,
