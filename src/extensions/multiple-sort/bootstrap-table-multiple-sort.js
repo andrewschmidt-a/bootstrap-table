@@ -284,9 +284,23 @@
                     that.assignSortableArrows();
                 }
             });
+            if (this.options.showClearMultiSort) {
+                var $btnClear = $btnGroup.find('.show-clear');  //Lone Mountain
+    
+                if (!$btnClear.length) {
+                    $btnClear = $([
+                        '<button class="btn btn-default show-clear" ',
+                        sprintf('type="button" title="%s">', 'Clear Multi Sort'),
+                        sprintf('<i class="%s %s"></i> ', this.options.iconsPrefix, this.options.icons.clear),
+                        '</button>'
+                    ].join('')).appendTo($btnGroup);
+    
+                    $btnClear.off('click');
+                }
+                $btnClear.on('click', $.proxy(this.setMultiSort([]), this));
+            }
         }
     };
-
     BootstrapTable.prototype.onMultipleSort = function() {
         var that = this;
 
