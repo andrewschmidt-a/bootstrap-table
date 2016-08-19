@@ -5,9 +5,6 @@ These include
 * Koolajax built in support for communicating to backend. (if use must have koolajax.js dependancy)
 * Clear button that will clear all filters, sorting etc...
 
-
-# [Bootstrap Table](http://bootstrap-table.wenzhixin.net.cn)
-
 [![Build Status](https://travis-ci.org/wenzhixin/bootstrap-table.svg)](https://travis-ci.org/wenzhixin/bootstrap-table) 
 [![GitHub version](https://badge.fury.io/gh/wenzhixin%2Fbootstrap-table.svg)](http://badge.fury.io/gh/wenzhixin%2Fbootstrap-table)
 [![Bower version](https://badge.fury.io/bo/bootstrap-table.svg)](http://badge.fury.io/bo/bootstrap-table)
