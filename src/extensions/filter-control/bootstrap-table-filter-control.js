@@ -527,18 +527,19 @@
 
         if (this.options.filterControl && this.options.filterShowClear) {
             var $btnGroup = this.$toolbar.find('>.btn-group'),
-                $btnClear = $btnGroup.find('.filter-show-clear');
+                $btnClear = $btnGroup.find('.show-clear');  //Lone Mountain
 
             if (!$btnClear.length) {
                 $btnClear = $([
-                    '<button class="btn btn-default filter-show-clear" ',
+                    '<button class="btn btn-default show-clear" ',
                     sprintf('type="button" title="%s">', this.options.formatClearFilters()),
                     sprintf('<i class="%s %s"></i> ', this.options.iconsPrefix, this.options.icons.clear),
                     '</button>'
                 ].join('')).appendTo($btnGroup);
 
-                $btnClear.off('click').on('click', $.proxy(this.clearFilterControl, this));
+                $btnClear.off('click');
             }
+            $btnClear.on('click', $.proxy(this.clearFilterControl, this));
         }
     };
 
