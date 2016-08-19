@@ -703,5 +703,5 @@
                 }
             }, that.options.searchTimeOut);
         }
-    };
+    }; 
 })(jQuery);
