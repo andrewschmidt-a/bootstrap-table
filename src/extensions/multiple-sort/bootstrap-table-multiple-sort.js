@@ -297,7 +297,9 @@
     
                     $btnClear.off('click');
                 }
-                $btnClear.on('click', $.proxy(this.setMultiSort([]), this));
+                $btnClear.on('click', function(){
+                    that.setMultiSort([]);
+                });
             }
         }
     };
