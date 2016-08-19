@@ -19,7 +19,7 @@ To get started, check out:
 * [问题/帮助](http://segmentfault.com/t/bootstrap-table)
 
 
-[**List of donators**](https://github.com/wenzhixin/bootstrap-table/blob/master/DONATORS.md)
+[**List of donations**](https://github.com/wenzhixin/bootstrap-table/blob/master/DONATORS.md)
 
 ## LICENSE
 
